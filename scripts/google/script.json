@@ -1,244 +1,106 @@
-//Comments aren't allowed in JSON, so this Script won't compile.
-//Therefore this script's only purpose is to document it's structure and syntax.
-//The syntax for variales is $NAME_OF_VARIABLE
-//Global Variables are:
-//$FNAME  First Name
-//$LNAME  Last Name
-//$DOB    Day of Birth
-//$MOB    Month of Birth
-//$YOB    Year of Birth
-//$GEND   Gender
-//$MAIL   E-Mail Adress
-
 {
   "info": {
-    //The name of the buildscript. This should include the name of the website.
-    "name": "Sample",
-    //A compact desciption of the buildscript, including possible quirks.
-    "description": "This is a super simple sample script"
+    "name": "Google",
+    "description": "Creates a Gmail account with associated mail address"
   },
-  //The part of the scipt responsible for initially creating the account
   "create": {
-    //Whether the process should be headless, i.e. without a gui
     "headless": false,
-    //Additional information the user will be prompted to give.
     "options": {
-      //A checkbox is a simple on / off switch. This could be used to ask the user
-      //whether he wants to subscribe to an optional newsletter.
-      "checkboxes": [
-        //A checkbox
-        {
-          //The name of the variable the value will be stored in.
-          "variable": "terms",
-          //The text the user will ne prompted with.
-          "text": "Accept terms and condition?"
-        },
-        //Another checkbox
-        {
-          "variable": "news",
-          "text": "Receive news"
-        }
-      ],
-      //Radioboxes are an array of checkbox, however only one of them can be checked at one time.
-      //This could be used to prompt the user for a choice.
-      "radioboxes": [
-        {
-          //The name of the variable the value will be stored in.
-          "variable": "gender",
-          //The available choices
-          "choices": [
-            //A choice
-            {
-              //The value that will be stored in the variable
-              "value": "M",
-              //The text the user will ne prompted with.
-              "name": "Male"
-            },
-            //Another choice
-            {
-              "value": "F",
-              "name": "Female"
-            }
-          ]
-        }
-      ],
-      //Standart textfields, the user can write into
+      "checkboxes": [],
+      "radioboxes": [],
       "textfields": [
         {
-          //The value that will be stored in the variable
-          "variable": "someInput",
-          //Regex to validate the input against
-          "regex": ".*"
+          "variable": "WA",
+          "regex": ".*@gmail.com"
+        },
+        {
+          "variable":"PW",
+          "regex":".*"
         }
       ]
     },
-    //The actions that will be performed linearly
     "actions": [
-      //A action
       {
-        //The type of action to perform.
-        //"Open" opens a webpage
         "type": "open",
-        //the url to open
-        "url": "**REPLACE WITH URL**"
+        "url": "https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=de&dsh=S-1627029711%3A1595605022997153&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp"
       },
-      //Another action
       {
-        //Click leftclicks one a element, f.e. a button.
         "type": "click",
-        //The element to click, identified by its xpath.
-        "element": "**REPLACE WITH XPATH**"
+        "element": "//*[@id=\"firstName\"]"
       },
       {
-        //Write types a sequence of keystrokes, f.e. to a textbox.
         "type": "write",
-        //The element to typed into, identified by its xpath.
-        "element": "**REPLACE WITH XPATH**",
-        //The value to be typed. can be a sequence of chars or special keys,
-        //as in the package org.openqa.selenium.Keys.
-        "value": "$M"
+        "element": "//*[@id=\"firstName\"]",
+        "value": "$FNAME"
+      },
+      {
+        "type": "click",
+        "element": "//*[@id=\"lastName\"]"
+      },
+      {
+        "type": "write",
+        "element": "//*[@id=\"lastName\"]",
+        "value": "$LNAME"
+      },
+      {
+        "type": "click",
+        "element": "//*[@id=\"firstName\"]"
+      },
+      {
+        "type": "write",
+        "element": "//*[@id=\"firstName\"]",
+        "value": "$FNAME"
+      },
+      {
+        "type": "click",
+        "element": "//*[@id=\"username\"]"
+      },
+      {
+        "type": "write",
+        "element": "//*[@id=\"username\"]",
+        "value": "$WA"
+      },
+      {
+        "type": "click",
+        "element": "/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[1]/div[3]/div[1]/div[1]/div/div/div[1]/div/div[1]/input"
+      },
+      {
+        "type": "write",
+        "element": "/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[1]/div[3]/div[1]/div[1]/div/div/div[1]/div/div[1]/input",
+        "value": "$PW"
+      },
+      {
+        "type": "click",
+        "element": "/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[1]/div[3]/div[1]/div[3]/div/div/div[1]/div/div[1]/input"
+      },
+      {
+        "type": "write",
+        "element": "/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[1]/div[3]/div[1]/div[3]/div/div/div[1]/div/div[1]/input",
+        "value": "$PW"
+      },
+      {
+        "type": "click",
+        "element": "/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[2]/div[1]/div/span/span"
       }
     ]
   },
-  //The part of the script responsible for modifying parts of the account. i.e. the password.
-  //The user should be asked, using the options which part he wants to change
+
   "modify": {
     "headless": false,
-    //Additional information the user will be prompted to give.
     "options": {
-      //A checkbox is a simple on / off switch. This could be used to ask the user
-      //whether he wants to subscribe to an optional newsletter.
-      "checkboxes": [
-        //A checkbox
-        {
-          //The name of the variable the value will be stored in.
-          "variable": "terms",
-          //The text the user will ne prompted with.
-          "text": "Accept terms and condition?"
-        },
-        //Another checkbox
-        {
-          "variable": "news",
-          "text": "Receive news"
-        }
-      ],
-      //Radioboxes are an array of checkbox, however only one of them can be checked at one time.
-      //This could be used to prompt the user for a choice.
-      "radioboxes": [
-        {
-          //The name of the variable the value will be stored in.
-          "variable": "gender",
-          //The available choices
-          "choices": [
-            //A choice
-            {
-              //The value that will be stored in the variable
-              "value": "M",
-              //The text the user will ne prompted with.
-              "name": "Male"
-            },
-            //Another choice
-            {
-              "value": "F",
-              "name": "Female"
-            }
-          ]
-        }
-      ],
-      //Standart textfields, the user can write into
-      "textfields": [
-        {
-          //The value that will be stored in the variable
-          "variable": "someInput",
-          //Regex to validate the input against
-          "regex": ".*"
-        }
-      ]
+      "checkboxes": [],
+      "radioboxes": [],
+      "textfields": []
     },
-    "actions": [
-      {
-        "type": "open",
-        "url": "**REPLACE WITH URL*+"
-      },
-      {
-        "type": "click",
-        "element": "**REPLACE WITH XPATH**"
-      },
-      {
-        "type": "write",
-        "element": "**REPLACE WITH XPATH**",
-        "value": "$M"
-      }
-    ]
+    "actions": []
   },
-  //The part of the script responsible for deleting / deactivating the account.
   "delete": {
     "headless": false,
-    //Additional information the user will be prompted to give.
     "options": {
-      //A checkbox is a simple on / off switch. This could be used to ask the user
-      //whether he wants to subscribe to an optional newsletter.
-      "checkboxes": [
-        //A checkbox
-        {
-          //The name of the variable the value will be stored in.
-          "variable": "terms",
-          //The text the user will ne prompted with.
-          "text": "Accept terms and condition?"
-        },
-        //Another checkbox
-        {
-          "variable": "news",
-          "text": "Receive news"
-        }
-      ],
-      //Radioboxes are an array of checkbox, however only one of them can be checked at one time.
-      //This could be used to prompt the user for a choice.
-      "radioboxes": [
-        {
-          //The name of the variable the value will be stored in.
-          "variable": "gender",
-          //The available choices
-          "choices": [
-            //A choice
-            {
-              //The value that will be stored in the variable
-              "value": "M",
-              //The text the user will ne prompted with.
-              "name": "Male"
-            },
-            //Another choice
-            {
-              "value": "F",
-              "name": "Female"
-            }
-          ]
-        }
-      ],
-      //Standart textfields, the user can write into
-      "textfields": [
-        {
-          //The value that will be stored in the variable
-          "variable": "someInput",
-          //Regex to validate the input against
-          "regex": ".*"
-        }
-      ]
+      "checkboxes": [],
+      "radioboxes": [],
+      "textfields": []
     },
-    "actions": [
-      {
-        "type": "open",
-        "url": "**REPLACE WITH URL**"
-      },
-      {
-        "type": "click",
-        "element": "**REPLACE WITH XPATH**"
-      },
-      {
-        "type": "write",
-        "element": "**REPLACE WITH XPATH**",
-        "value": "$M"
-      }
-    ]
+    "actions": []
   }
 }
