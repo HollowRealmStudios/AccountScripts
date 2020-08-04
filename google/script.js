@@ -35,6 +35,8 @@ module.exports = {
     await driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[1]/div[3]/div[1]/div[3]/div/div/div[1]/div/div[1]/input")).click();
     await driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[1]/div[3]/div[1]/div[3]/div/div/div[1]/div/div[1]/input")).sendKeys(password);
     await driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div[2]/div[1]/div/span/span")).click();
+    let errorClass = await driver.findElement(By.className("o6cuMc"));
+    if(String(await errorClass.getAttribute("innerHTML")).includes("That username is taken. Try another.")) return undefined;
     return {
       firstName: credentials.firstName,
       lastName: credentials.lastName,
@@ -42,10 +44,6 @@ module.exports = {
       password: password
     }
   },
-  modify: async () => {
-
-  },
-  delete: async () => {
-
-  }
+  modify: async () => {},
+  delete: async () => {}
 }
