@@ -1,4 +1,4 @@
-const selenium = require("selenium");
+const selenium = require("selenium-webdriver");
 const pwdgen = require("password-generator");
 const prompt = require("node-prompt")
 
