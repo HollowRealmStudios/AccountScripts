@@ -1,0 +1,29 @@
+{
+  "name": "account_scripts",
+  "version": "1.0.0",
+  "description": "Scripts to be used in conjunction with account-bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HollowRealmStudios/AccountScripts.git"
+  },
+  "keywords": [
+    "account-bot",
+    "scripts",
+    "automation",
+    "foss",
+    "oss"
+  ],
+  "author": "NastyGamer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HollowRealmStudios/AccountScripts/issues"
+  },
+  "homepage": "https://github.com/HollowRealmStudios/AccountScripts#readme",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
