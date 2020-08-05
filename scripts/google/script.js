@@ -1,6 +1,6 @@
 const { Builder, By } = require("selenium-webdriver");
 const pwdgen = require("password-generator");
-const prompt = require("node-prompt")
+const prompt = require("electron-prompt")
 
 module.exports = {
   name: "Google",
