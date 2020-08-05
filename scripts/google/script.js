@@ -1,4 +1,4 @@
-const selenium = require("selenium-webdriver");
+const { Builder, By } = require("selenium-webdriver");
 const pwdgen = require("password-generator");
 const prompt = require("node-prompt")
 
@@ -8,6 +8,7 @@ module.exports = {
   license: "Icon made by Freepik from www.flaticon.com",
   headless: false,
   create: async (credentials) => {
+    const driver = new Builder().forBrowser("firefox").build();
     await driver.get("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=en&dsh=S-1627029711%3A1595605022997153&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp");
     await driver.findElement(By.xpath("//*[@id=\"firstName\"]")).click();
     await driver.findElement(By.xpath("//*[@id=\"firstName\"]")).sendKeys(credentials.firstName);
